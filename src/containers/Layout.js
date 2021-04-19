@@ -23,7 +23,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import WorkIcon from "@material-ui/icons/Work";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import TimerIcon from "@material-ui/icons/Timer";
-
+import RoomIcon from "@material-ui/icons/Room";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -187,6 +187,12 @@ export default function MiniDrawer(props) {
               <TimerIcon />
             </ListItemIcon>
             <ListItemText primary="Times" />
+          </ListItem>
+          <ListItem button component={NavLink} to="locations">
+            <ListItemIcon>
+              <RoomIcon />
+            </ListItemIcon>
+            <ListItemText primary="Locations" />
           </ListItem>
         </List>
       </Drawer>

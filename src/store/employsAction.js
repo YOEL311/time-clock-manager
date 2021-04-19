@@ -10,13 +10,13 @@ const getListEmploysSuccess = (employs) => {
   };
 };
 
-const addNewEmploy = (employ) => {
+const setEmploy = (employ) => {
   return async (dispatch) => {
-    await db.collection("employs").doc(employ.phone).set({
+    await db.collection("employs").doc(`${employ.mobile}`).set({
       name: employ.name,
       title: employ.title,
     });
-    toast.success("Successfully added");
+    toast.success("Successfully set");
     dispatch(getListEmploys());
   };
 };
@@ -42,4 +42,4 @@ const getListEmploys = () => {
   };
 };
 
-export { getListEmploys, addNewEmploy, removeJob };
+export { getListEmploys, setEmploy, removeJob };

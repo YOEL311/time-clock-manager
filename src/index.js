@@ -23,6 +23,7 @@ const store = createStore(
   applyMiddleware(ReduxThunk, logger)
 );
 
+export { store };
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
