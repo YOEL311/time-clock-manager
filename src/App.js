@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 
 const themeObject = {
   palette: {
-    primary: { main: "#9A58B2" },
+    // primary: { main: "#9A58B2" },
     type: "light",
   },
   themeName: "Blue Lagoon 2020",

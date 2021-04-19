@@ -1,5 +1,4 @@
-import { TOGGLE_THEME, LOGIN_SUCCESS, GET_LIST_QUEUE_SUCCESS } from "./types";
-import { toast } from "react-toastify";
+import { TOGGLE_THEME } from "./types";
 
 const toggleTheme = () => {
   return {
@@ -7,17 +6,4 @@ const toggleTheme = () => {
   };
 };
 
-const loginSuccess = (data) => {
-  return {
-    type: LOGIN_SUCCESS,
-    payload: data,
-  };
-};
-
-const addNewCustomer = (name) => {
-  return async (dispatch, getState) => {
-    const token = getState().token;
-  };
-};
-
-export { toggleTheme, addNewCustomer };
+export { toggleTheme };

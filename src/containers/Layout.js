@@ -17,11 +17,13 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Typography } from "@material-ui/core";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleTheme } from "../store/actions";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import QueueIcon from "@material-ui/icons/Queue";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import WorkIcon from "@material-ui/icons/Work";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import TimerIcon from "@material-ui/icons/Timer";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -91,8 +93,6 @@ export default function MiniDrawer(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const userName = useSelector((state) => state?.user?.email);
-
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   React.useEffect(() => {
@@ -129,13 +129,10 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Queue manager
+            Time clock management
           </Typography>
           <div style={{ flex: 1 }} />
 
-          <Typography variant="h6" noWrap>
-            {`hello ${userName ? userName : "juest"}`}
-          </Typography>
           <IconButton
             color="inherit"
             aria-label="toggle theme"
@@ -173,17 +170,23 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
-          <ListItem button component={NavLink} to="/login">
+          <ListItem button component={NavLink} to="jobs">
             <ListItemIcon>
-              <ExitToAppIcon />
+              <WorkIcon />
             </ListItemIcon>
-            <ListItemText primary={"Login"} />
+            <ListItemText primary="Jobs" />
           </ListItem>
-          <ListItem button component={NavLink} to="queue">
+          <ListItem button component={NavLink} to="employs">
             <ListItemIcon>
-              <QueueIcon />
+              <SupervisorAccountIcon />
             </ListItemIcon>
-            <ListItemText primary="Queue" />
+            <ListItemText primary="Employs" />
+          </ListItem>
+          <ListItem button component={NavLink} to="times">
+            <ListItemIcon>
+              <TimerIcon />
+            </ListItemIcon>
+            <ListItemText primary="Times" />
           </ListItem>
         </List>
       </Drawer>
