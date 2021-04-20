@@ -63,7 +63,7 @@ const Locations = () => {
     <div style={{ width: "80Vw", height: "80vh" }}>
       <GoogleMapReact
         bootstrapURLKeys={{
-          key: "AIzaSyD2_BxtmLyS_ZN0Vu77jl1vPp4DRsj6NQw",
+          key: process.env.REACT_APP_API_MAP_KEY,
           language: "il",
           region: "IL",
         }}
