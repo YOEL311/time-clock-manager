@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Grid,
-  Container,
-  Card,
-  Typography,
-  Button,
-  TextField,
-  MenuItem,
-  Select,
-} from "@material-ui/core";
+
 // import { getData } from "../store/actions";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import GoogleMapReact from "google-map-react";
+
+import "./map.css";
 
 const useStyles = makeStyles((theme) => ({
   TextField: {
@@ -32,16 +24,6 @@ const MyMarker = ({ text, tooltip }) => (
 );
 
 const Locations = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const user = useSelector((state) => state.user);
-
-  const style = useStyles();
-
-  useEffect(() => {
-    // dispatch(getData());
-  }, []);
-
   const distanceToMouse = (pt, mp) => {
     if (pt && mp) {
       // return distance between the marker and mouse pointer
@@ -52,14 +34,12 @@ const Locations = () => {
   };
 
   const points = [
-    { id: 1, title: "Round Pond", lat: 51.506, lng: -0.184 },
-    { id: 2, title: "The Long Water", lat: 51.508, lng: -0.175 },
-    { id: 3, title: "The Serpentine", lat: 51.505, lng: -0.164 },
+    { id: "yoel", title: "Round Pond", lat: 32, lng: 35 },
+    { id: 2, title: "The Long Water", lat: 32.2, lng: 34.8 },
+    { id: 3, title: "The Serpentine", lat: 32.4, lng: 35.2 },
   ];
 
   return (
-    // <Grid>
-    // <Container>
     <div style={{ width: "80Vw", height: "80vh" }}>
       <GoogleMapReact
         bootstrapURLKeys={{
@@ -71,17 +51,14 @@ const Locations = () => {
         defaultZoom={8}
         distanceToMouse={distanceToMouse}
       >
-        {/* {points.map(({ lat, lng, id, title }) => {
+        {points.map(({ lat, lng, id, title }) => {
           return (
             <MyMarker key={id} lat={lat} lng={lng} text={id} tooltip={title} />
           );
-        })} */}
+        })}
       </GoogleMapReact>
     </div>
   );
-  {
-    /* </Container> */
-  }
 };
 
 export default Locations;

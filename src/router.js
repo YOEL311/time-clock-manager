@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Jobs from "./component/Jobs";
