@@ -1,6 +1,5 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-
-// import { getData } from "../store/actions";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";

@@ -2,11 +2,15 @@ import {
   TOGGLE_THEME,
   GET_LIST_JOBS_SUCCESS,
   GET_LIST_EMPLOYS_SUCCESS,
+  GET_TIMES_SUCCESS,
+  GET_AMOUNT_TIMES_SUCCESS,
 } from "./types";
 const init = {
   theme: "right",
   jobs: [],
   employs: [],
+  times: {},
+  amountTimes: [],
 };
 
 function reducer(state = init, action) {
@@ -17,6 +21,10 @@ function reducer(state = init, action) {
       return { ...state, jobs: action.payload };
     case GET_LIST_EMPLOYS_SUCCESS:
       return { ...state, employs: action.payload };
+    case GET_TIMES_SUCCESS:
+      return { ...state, times: action.payload };
+    case GET_AMOUNT_TIMES_SUCCESS:
+      return { ...state, amountTimes: action.payload };
     default:
       return state;
   }

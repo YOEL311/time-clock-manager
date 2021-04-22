@@ -19,17 +19,14 @@ const logger = (store) => (next) => (action) => {
 
 const store = createStore(
   reducer,
-  // applyMiddleware(ReduxThunk)
-  applyMiddleware(ReduxThunk, logger)
+  applyMiddleware(ReduxThunk)
+  // applyMiddleware(ReduxThunk, logger)
 );
 
-export { store };
 ReactDOM.render(
-  // <React.StrictMode>
   <Provider store={store}>
     <App />
   </Provider>,
-  // </React.StrictMode>,
   document.getElementById("root")
 );
 

@@ -24,6 +24,7 @@ const addNewJob = (title) => {
     dispatch(getListJobs());
   };
 };
+
 const getListJobs = () => {
   return async (dispatch) => {
     const jobsRef = db.collection("jobs");
