@@ -17,20 +17,27 @@ const getAmountTimesSuccess = (amountTimes) => {
 
 const getTimes = () => {
   return async (dispatch) => {
-    const timesSnapshot = await db.collectionGroup("times").get();
-    let data = {};
-    for (const time of timesSnapshot.docs) {
-      if (!data[time.ref.parent.parent.id]) {
-        data = { ...data, [time.ref.parent.parent.id]: {} };
-        data[time.ref.parent.parent.id].times = [];
-        const employ = (await time.ref.parent.parent.get()).data();
-        data[time.ref.parent.parent.id].name = employ?.name;
+    const timesSnapshot = db.collectionGroup("times").orderBy("time");
+    timesSnapshot.onSnapshot(
+      async (timesSnapshot) => {
+        let data = {};
+        for (const time of timesSnapshot.docs) {
+          if (!data[time.ref.parent.parent.id]) {
+            data = { ...data, [time.ref.parent.parent.id]: {} };
+            data[time.ref.parent.parent.id].times = [];
+            const employ = (await time.ref.parent.parent.get()).data();
+            data[time.ref.parent.parent.id].name = employ?.name;
+          }
+          data[time.ref.parent.parent.id].times.push(time.data().time);
+        }
+        const dataAmount = getAmount(data);
+        dispatch(getTimesSuccess(data));
+        dispatch(getAmountTimesSuccess(dataAmount));
+      },
+      (err) => {
+        console.log(`Encountered error: ${err}`);
       }
-      data[time.ref.parent.parent.id].times.push(time.data().time);
-    }
-    const dataAmount = getAmount(data);
-    dispatch(getTimesSuccess(data));
-    dispatch(getAmountTimesSuccess(dataAmount));
+    );
   };
 };
 
@@ -38,13 +45,14 @@ const getAmount = (data) => {
   const dataAmount = [];
   Object.keys(data).forEach((key) => {
     const employ = data[key];
+
     let amount = 0;
     for (let i = 0; i < employ.times.length; i++) {
       if (i % 2 === 1) {
-        amount += employ.times[i - 1]?.seconds - employ.times[i]?.seconds;
+        amount += employ.times[i] - employ.times[i - 1];
       }
     }
-    dataAmount.push([data[key].name, amount / 60 / 60, 4]);
+    dataAmount.push([data[key].name, amount / 60 / 60 / 60, 4]);
   });
   return dataAmount;
 };

@@ -30,10 +30,11 @@ const EditEmploy = (props) => {
     title: "",
   };
 
-  async function onSubmit(data) {
-    console.log("🚀 ~ file: employSchema.js ~ line 20 ~ onSubmit ~ data", data);
+  async function onSubmit(data, { resetForm }) {
     const { name, mobile, title } = data;
     dispatch(setEmploy({ name, mobile, title }));
+    resetForm();
+    closeModel();
   }
 
   const configForm = {
@@ -96,9 +97,7 @@ const EditEmploy = (props) => {
       <DialogActions>
         <Button
           onClick={() => {
-            console.log(formData);
             if (!Object.entries(formData.errors).length) {
-              console.log("object");
               formData.handleSubmit();
               formData.handleReset();
               closeModel();

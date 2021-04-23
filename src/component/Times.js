@@ -18,6 +18,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import moment from "moment";
 
 const useStyles = makeStyles({
   table: {
@@ -63,8 +64,7 @@ const Times = () => {
       <Grid>
         <Grid>
           <Select
-            style={{ width: 120 }}
-            id="demo-simple-select"
+            style={{ width: "15vw" }}
             onChange={(event) => {
               setEmploySelected(event.target.value);
             }}
@@ -78,50 +78,32 @@ const Times = () => {
           </Select>
 
           <TableContainer component={Paper}>
-            <Table
-              // className={classes.table}
-              size="small"
-              aria-label="a dense table"
-            >
+            <Table size="small" aria-label="a dense table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  <TableCell>Time</TableCell>
+                  <TableCell align="right">Event</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {times[employSelected]?.times?.map((time) => {
-                  console.log(
-                    "🚀 ~ file: Times.js ~ line 97 ~ {times[employSelected]?.times?.map ~ time",
-                    time.t.seconds
-                  );
+                {times[employSelected]?.times?.map((time, index) => {
+                  const isEntry = index % 2 === 0 ? true : false;
                   return (
-                    <TableRow key={time}>
+                    <TableRow
+                      style={{
+                        backgroundColor: isEntry ? "#28A745" : "#FFC107",
+                      }}
+                      key={time}
+                    >
                       <TableCell component="th" scope="row">
-                        {"name"}
+                        {moment(time).format("MMMM Do YYYY, h:mm:ss a")}
                       </TableCell>
-                      <TableCell align="right">{"jljlk"}</TableCell>
-                      {/* <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell> */}
+                      <TableCell align="right">
+                        {isEntry ? "Enter" : "Exit"}
+                      </TableCell>
                     </TableRow>
                   );
                 })}
-
-                {/* {rows.map((row) => (
-                  <TableRow key={row.name}>
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
-                  </TableRow>
-                ))} */}
               </TableBody>
             </Table>
           </TableContainer>

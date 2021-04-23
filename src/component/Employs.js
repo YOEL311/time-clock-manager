@@ -49,9 +49,10 @@ const Employs = () => {
     title: "",
   };
 
-  async function onSubmit(data) {
+  async function onSubmit(data, { resetForm }) {
     const { name, mobile, title } = data;
     dispatch(setEmploy({ name, mobile, title }));
+    resetForm();
   }
 
   const configForm = {
