@@ -52,7 +52,7 @@ const getAmount = (data) => {
         amount += employ.times[i] - employ.times[i - 1];
       }
     }
-    dataAmount.push([data[key].name, amount / 60 / 60 / 60, 4]);
+    dataAmount.push([data[key].name, amount / 1000 / 60 / 60, 4]);
   });
   return dataAmount;
 };

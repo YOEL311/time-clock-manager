@@ -1,45 +1,60 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import GoogleMapReact from "google-map-react";
-
-import "./map.css";
+import { getListLocations } from "../store/actions/locationsActions";
 
 const useStyles = makeStyles((theme) => ({
-  TextField: {
-    margin: 20,
+  circle: {
+    background: "#d83b01",
+    borderRadius: "50%",
+    color: "#fff",
+    height: "0.7em",
+    position: "relative",
+    width: "0.7em",
+    border: "1px solid transparent",
+  },
+  circleText: {
+    textAlign: "center",
+    height: "50%",
+    left: "50%",
+    position: "absolute",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "50%",
   },
 }));
 
-const MyMarker = ({ text, tooltip }) => (
-  <div className="circle">
-    <span className="circleText" title={tooltip}>
-      {text}
-    </span>
-  </div>
-);
+const MyMarker = ({ text, tooltip }) => {
+  const styles = useStyles();
+  return (
+    <div className={styles.circle}>
+      <span className={styles.circleText} title={tooltip}>
+        {text}
+      </span>
+    </div>
+  );
+};
 
 const Locations = () => {
+  const dispatch = useDispatch();
+  const locations = useSelector((state) => state.locations);
+
+  useEffect(() => {
+    dispatch(getListLocations());
+  }, []);
+
   const distanceToMouse = (pt, mp) => {
     if (pt && mp) {
-      // return distance between the marker and mouse pointer
       return Math.sqrt(
         (pt.x - mp.x) * (pt.x - mp.x) + (pt.y - mp.y) * (pt.y - mp.y)
       );
     }
   };
 
-  const points = [
-    { id: "yoel", title: "Round Pond", lat: 32, lng: 35 },
-    { id: 2, title: "The Long Water", lat: 32.2, lng: 34.8 },
-    { id: 3, title: "The Serpentine", lat: 32.4, lng: 35.2 },
-  ];
-
   return (
-    <div style={{ width: "80Vw", height: "80vh" }}>
+    <div style={{ width: "90Vw", height: "90vh" }}>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: process.env.REACT_APP_API_MAP_KEY,
@@ -50,7 +65,7 @@ const Locations = () => {
         defaultZoom={8}
         distanceToMouse={distanceToMouse}
       >
-        {points.map(({ lat, lng, id, title }) => {
+        {locations.map(({ lat, lng, id, title }) => {
           return (
             <MyMarker key={id} lat={lat} lng={lng} text={id} tooltip={title} />
           );

@@ -4,6 +4,7 @@ import {
   GET_LIST_EMPLOYS_SUCCESS,
   GET_TIMES_SUCCESS,
   GET_AMOUNT_TIMES_SUCCESS,
+  GET_LIST_LOCATIONS_SUCCESS,
 } from "./types";
 const init = {
   theme: "right",
@@ -11,6 +12,7 @@ const init = {
   employs: [],
   times: {},
   amountTimes: [],
+  locations: [],
 };
 
 function reducer(state = init, action) {
@@ -25,6 +27,8 @@ function reducer(state = init, action) {
       return { ...state, times: action.payload };
     case GET_AMOUNT_TIMES_SUCCESS:
       return { ...state, amountTimes: action.payload };
+    case GET_LIST_LOCATIONS_SUCCESS:
+      return { ...state, locations: action.payload };
     default:
       return state;
   }
