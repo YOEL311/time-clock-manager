@@ -26,6 +26,7 @@ const Login = () => {
   const [newJobTitle, setNewJobTitle] = useState("");
   useEffect(() => {
     dispatch(getListJobs());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

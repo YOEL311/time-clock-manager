@@ -43,6 +43,7 @@ const Locations = () => {
 
   useEffect(() => {
     dispatch(getListLocations());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const distanceToMouse = (pt, mp) => {
