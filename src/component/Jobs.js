@@ -13,24 +13,17 @@ import {
 } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { getListJobs, addNewJob, removeJob } from "../store/jobsAction";
+import { getListJobs, addNewJob, removeJob } from "../store/actions/jobsAction";
 import { useDispatch } from "react-redux";
-// import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import WorkIcon from "@material-ui/icons/Work";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 
-// const useStyles = makeStyles((theme) => ({
-//   TextField: {
-//     margin: 20,
-//   },
-// }));
 const Login = () => {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs);
   const [newJobTitle, setNewJobTitle] = useState("");
-  // const style = useStyles();
   useEffect(() => {
     dispatch(getListJobs());
   }, []);

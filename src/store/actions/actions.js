@@ -1,4 +1,4 @@
-import { TOGGLE_THEME } from "./types";
+import { TOGGLE_THEME } from "../types";
 
 const toggleTheme = () => {
   return {

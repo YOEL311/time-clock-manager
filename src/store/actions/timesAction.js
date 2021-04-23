@@ -1,5 +1,5 @@
-import { GET_TIMES_SUCCESS, GET_AMOUNT_TIMES_SUCCESS } from "./types";
-import { db } from "../config/firebase";
+import { GET_TIMES_SUCCESS, GET_AMOUNT_TIMES_SUCCESS } from "../types";
+import { db } from "../../config/firebase";
 
 const getTimesSuccess = (times) => {
   return {

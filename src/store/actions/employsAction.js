@@ -1,7 +1,7 @@
-import { GET_LIST_EMPLOYS_SUCCESS } from "./types";
+import { GET_LIST_EMPLOYS_SUCCESS } from "../types";
 import { toast } from "react-toastify";
-import { db } from "../config/firebase";
-import { getDataFromDoc } from "../common";
+import { db } from "../../config/firebase";
+import { getDataFromDoc } from "../../common";
 
 const getListEmploysSuccess = (employs) => {
   return {

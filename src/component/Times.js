@@ -1,16 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Grid, Container, Typography, TextField } from "@material-ui/core";
+import { Grid, Container } from "@material-ui/core";
 import { MenuItem, Select } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { setEmploy, getListEmploys, removeJob } from "../store/employsAction";
-import { getListJobs } from "../store/jobsAction";
-import { getTimes } from "../store/timesAction";
+import { getListEmploys } from "../store/actions/employsAction";
+import { getTimes } from "../store/actions/timesAction";
 import { useDispatch, useSelector } from "react-redux";
 import Chart from "react-google-charts";
-import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -20,12 +14,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import moment from "moment";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: "30vw",
-  },
-});
-
 const Times = () => {
   const dispatch = useDispatch();
   const employs = useSelector((state) => state.employs);
@@ -33,13 +21,6 @@ const Times = () => {
   const times = useSelector((state) => state.times);
   const [employSelected, setEmploySelected] = useState(null);
   const dataStyle = [["Element", "Times", { role: "style" }], ...amountTimes];
-
-  console.log("🚀 ~ file: Times.js ~ line 21 ~ Times ~ employs", employs);
-  console.log("🚀 ~ file: Times.js ~ line 24 ~ Times ~ times", times);
-  console.log(
-    "🚀 ~ file: Times.js ~ line 37 ~ Times ~ employSelected",
-    employSelected
-  );
 
   useEffect(() => {
     dispatch(getTimes());

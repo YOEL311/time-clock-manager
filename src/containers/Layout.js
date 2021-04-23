@@ -18,7 +18,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Typography } from "@material-ui/core";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import { useDispatch } from "react-redux";
-import { toggleTheme } from "../store/actions";
+import { toggleTheme } from "../store/actions/actions";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import WorkIcon from "@material-ui/icons/Work";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";

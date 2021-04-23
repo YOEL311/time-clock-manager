@@ -1,6 +1,6 @@
-import { GET_LIST_JOBS_SUCCESS } from "./types";
+import { GET_LIST_JOBS_SUCCESS } from "../types";
 import { toast } from "react-toastify";
-import { db } from "../config/firebase";
+import { db } from "../../config/firebase";
 
 const getListJobsSuccess = (jobs) => {
   return {
