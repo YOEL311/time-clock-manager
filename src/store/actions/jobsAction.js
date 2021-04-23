@@ -1,6 +1,7 @@
 import { GET_LIST_JOBS_SUCCESS } from "../types";
 import { toast } from "react-toastify";
 import { db } from "../../config/firebase";
+import { getDataFromDoc } from "../../common";
 
 const getListJobsSuccess = (jobs) => {
   return {
@@ -34,11 +35,8 @@ const getListJobs = () => {
       return;
     }
 
-    const jobs = [];
-    snapshot.forEach((doc) => {
-      jobs.push({ ...doc.data(), id: doc.id });
-    });
-    dispatch(getListJobsSuccess(jobs));
+    const res = getDataFromDoc(snapshot);
+    dispatch(getListJobsSuccess(res));
   };
 };
 
