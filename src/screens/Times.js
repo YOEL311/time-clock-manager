@@ -12,6 +12,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 
 const Times = () => {
@@ -19,7 +20,7 @@ const Times = () => {
   const employs = useSelector((state) => state.employs);
   const amountTimes = useSelector((state) => state.amountTimes);
   const times = useSelector((state) => state.times);
-  const [employSelected, setEmploySelected] = useState(null);
+  const [employSelected, setEmploySelected] = useState("");
   const dataStyle = [["Element", "Times", { role: "style" }], ...amountTimes];
 
   useEffect(() => {
@@ -29,7 +30,9 @@ const Times = () => {
 
   return (
     <Container>
-      {true > 0 && (
+      <Typography variant="h5">Times</Typography>
+
+      {amountTimes.length > 0 && (
         <Chart
           chartType="ColumnChart"
           width="100%"

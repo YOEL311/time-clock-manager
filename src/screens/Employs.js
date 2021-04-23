@@ -21,7 +21,7 @@ import { getListJobs } from "../store/actions/jobsAction";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import AddBoxIcon from "@material-ui/icons/AddBox";
-import EditEmploy from "./EditEmploy";
+import EditEmploy from "../components/EditEmploy";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -37,7 +37,7 @@ const Employs = () => {
   const jobs = useSelector((state) => state.jobs);
   const classes = useStyles();
   const [editOpen, setEditOpen] = useState(false);
-  const [editEmployId, setEditEmployId] = useState("123456");
+  const [editEmployId, setEditEmployId] = useState("");
 
   const EditEmploySchema = Yup.object().shape({
     name: Yup.string().required("mandatoryField"),
@@ -102,12 +102,12 @@ const Employs = () => {
                     >
                       <EditIcon />
                     </IconButton>
-                    <IconButton>
-                      <DeleteIcon
-                        onClick={() => {
-                          dispatch(removeJob(row.id));
-                        }}
-                      />
+                    <IconButton
+                      onClick={() => {
+                        dispatch(removeJob(row.id));
+                      }}
+                    >
+                      <DeleteIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -151,8 +151,8 @@ const Employs = () => {
                   </Select>
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton>
-                    <AddBoxIcon onClick={formData.handleSubmit} />
+                  <IconButton onClick={formData.handleSubmit}>
+                    <AddBoxIcon />
                   </IconButton>
                 </TableCell>
               </TableRow>

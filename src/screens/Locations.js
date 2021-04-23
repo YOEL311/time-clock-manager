@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import GoogleMapReact from "google-map-react";
 import { getListLocations } from "../store/actions/locationsActions";
-
+import { Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   circle: {
     background: "#d83b01",
@@ -55,6 +55,7 @@ const Locations = () => {
 
   return (
     <div style={{ width: "90Vw", height: "90vh" }}>
+      <Typography variant="h5">Locations</Typography>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: process.env.REACT_APP_API_MAP_KEY,
@@ -67,7 +68,13 @@ const Locations = () => {
       >
         {locations.map(({ lat, lng, id, title }) => {
           return (
-            <MyMarker key={id} lat={lat} lng={lng} text={id} tooltip={title} />
+            <MyMarker
+              key={`${lat}${lng}`}
+              lat={lat}
+              lng={lng}
+              text={id}
+              tooltip={title}
+            />
           );
         })}
       </GoogleMapReact>

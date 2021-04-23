@@ -32,27 +32,22 @@ const getListLocations = () => {
       async (timesSnapshot) => {
         let data = [];
         for (const time of timesSnapshot.docs) {
-          // if (!data[time.ref.parent.parent.id]) {
-          //   data = { ...data, [time.ref.parent.parent.id]: {} };
-          //   data[time.ref.parent.parent.id].times = [];
-          //   const employ = (await time.ref.parent.parent.get()).data();
-          //   data[time.ref.parent.parent.id].name = employ?.name;
-
-          // }
-          console.log("locations", time.data().location);
           time.data().location && data.push(time.data().location);
-          // data[time.ref.parent.parent.id].times.push(time.data().time);
         }
-        dispatch(getListLocationsSuccess(data));
-        // const dataAmount = getAmount(data);
-        // dispatch(getTimesSuccess(data));
-        // dispatch(getAmountTimesSuccess(dataAmount));
+        const dataClear = clearLocationDuplicated(data);
+        dispatch(getListLocationsSuccess(dataClear));
       },
       (err) => {
         console.log(`Encountered error: ${err}`);
       }
     );
   };
+};
+
+const clearLocationDuplicated = (data) => {
+  return data.filter(
+    (v, i, a) => a.findIndex((t) => t.lng === v.lng && t.lat === v.lat) === i
+  );
 };
 
 const getListJobs = () => {
