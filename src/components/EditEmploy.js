@@ -20,7 +20,7 @@ const EditEmploy = (props) => {
     name: Yup.string().required("mandatoryField"),
     mobile: Yup.number()
       .required("mandatoryField")
-      .test("len", "phoneNumberLength", (val) => val?.toString().length > 8),
+      .test("len", "phoneNumberLength", (val) => val?.toString().length > 4),
     title: Yup.string().required("mandatoryField"),
   });
 
@@ -48,11 +48,15 @@ const EditEmploy = (props) => {
   const jobs = useSelector((state) => state.jobs);
 
   const formData = useFormik(configForm);
+  console.log(
+    "🚀 ~ file: EditEmploy.js ~ line 52 ~ EditEmploy ~ formData",
+    formData
+  );
 
   useEffect(() => {
     dispatch(getListEmploys());
     dispatch(getListJobs());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -96,16 +100,7 @@ const EditEmploy = (props) => {
         </Select>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={() => {
-            if (!Object.entries(formData.errors).length) {
-              formData.handleSubmit();
-              formData.handleReset();
-              closeModel();
-            }
-          }}
-          color="primary"
-        >
+        <Button onClick={formData.handleSubmit} color="primary">
           Save Changes
         </Button>
         <Button onClick={closeModel} color="primary">
