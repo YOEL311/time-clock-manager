@@ -45,7 +45,6 @@ const getAmount = (data) => {
   const dataAmount = [];
   Object.keys(data).forEach((key) => {
     const employ = data[key];
-
     let amount = 0;
     for (let i = 0; i < employ.times.length; i++) {
       if (i % 2 === 1) {
