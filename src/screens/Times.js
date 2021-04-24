@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Container } from "@material-ui/core";
-import { MenuItem, Select } from "@material-ui/core";
+import { MenuItem, Select, InputLabel } from "@material-ui/core";
 import { getListEmploys } from "../store/actions/employsAction";
 import { getTimes } from "../store/actions/timesAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +48,7 @@ const Times = () => {
 
       <Grid>
         <Grid>
+          <InputLabel>Select Employ</InputLabel>
           <Select
             style={{ width: "15vw" }}
             onChange={(event) => {
@@ -63,7 +64,7 @@ const Times = () => {
           </Select>
 
           <TableContainer component={Paper}>
-            <Table size="small" aria-label="a dense table">
+            <Table size="small">
               <TableHead>
                 <TableRow>
                   <TableCell>Time</TableCell>
