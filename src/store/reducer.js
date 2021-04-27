@@ -5,6 +5,8 @@ import {
   GET_TIMES_SUCCESS,
   GET_AMOUNT_TIMES_SUCCESS,
   GET_LIST_LOCATIONS_SUCCESS,
+  SIGN_IN_SUCCESS,
+  GET_ALL_USER_SUCCESS,
 } from "./types";
 const init = {
   theme: "right",
@@ -13,6 +15,8 @@ const init = {
   times: {},
   amountTimes: [],
   locations: [],
+  user: null,
+  allUsers: [],
 };
 
 function reducer(state = init, action) {
@@ -29,6 +33,10 @@ function reducer(state = init, action) {
       return { ...state, amountTimes: action.payload };
     case GET_LIST_LOCATIONS_SUCCESS:
       return { ...state, locations: action.payload };
+    case SIGN_IN_SUCCESS:
+      return { ...state, user: action.payload };
+    case GET_ALL_USER_SUCCESS:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

@@ -24,6 +24,7 @@ import WorkIcon from "@material-ui/icons/Work";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import TimerIcon from "@material-ui/icons/Timer";
 import RoomIcon from "@material-ui/icons/Room";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -170,6 +171,12 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
+          <ListItem button component={NavLink} to="login">
+            <ListItemIcon>
+              <VpnKeyIcon />
+            </ListItemIcon>
+            <ListItemText primary="Login" />
+          </ListItem>
           <ListItem button component={NavLink} to="jobs">
             <ListItemIcon>
               <WorkIcon />
