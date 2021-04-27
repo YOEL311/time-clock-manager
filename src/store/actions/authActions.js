@@ -42,7 +42,7 @@ const getAllUsers = (email, password) => {
 const signIn = (email, password) => {
   return async (dispatch) => {
     auth
-      .signInWithEmailAndPassword("admin@admin.com", "admin1")
+      .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         dispatch(signInSuccess(true));
         dispatch(getAllUsers());
