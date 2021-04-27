@@ -36,7 +36,7 @@ function reducer(state = init, action) {
     case SIGN_IN_SUCCESS:
       return { ...state, user: action.payload };
     case GET_ALL_USER_SUCCESS:
-      return { ...state, user: action.payload };
+      return { ...state, allUsers: action.payload };
     default:
       return state;
   }

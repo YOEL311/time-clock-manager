@@ -28,11 +28,7 @@ const getAllUsers = (email, password) => {
     func
       .httpsCallable("getAllUsers")(message)
       .then((result) => {
-        console.log(
-          "🚀 ~ file: authActions.js ~ line 31 ~ .then ~ result",
-          result
-        );
-        dispatch(getAllUserSuccess(result));
+        dispatch(getAllUserSuccess(result.data.users));
       })
       .catch((error) => {});
   };

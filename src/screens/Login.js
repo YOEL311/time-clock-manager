@@ -37,8 +37,8 @@ const Login = () => {
             <TableBody>
               {allUsers?.map((user, index) => {
                 return (
-                  <TableRow key={user.email}>
-                    <TableCell align="right">{user.email}</TableCell>
+                  <TableRow key={user}>
+                    <TableCell align="left">{user}</TableCell>
                   </TableRow>
                 );
               })}
