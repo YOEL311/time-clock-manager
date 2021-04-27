@@ -26,8 +26,7 @@ const getAllUsers = (email, password) => {
     const message = { message: "Hello." };
 
     func
-      .httpsCallable("getAllUsers2")(message)
-      // .httpsCallable("getUsers")(message)
+      .httpsCallable("getAllUsers")(message)
       .then((result) => {
         console.log(
           "🚀 ~ file: authActions.js ~ line 31 ~ .then ~ result",
