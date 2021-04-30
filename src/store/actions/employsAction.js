@@ -16,7 +16,7 @@ const setEmploy = (employ) => {
       name: employ.name,
       title: employ.title,
     });
-    toast.success("Successfully set");
+    toast.success("Successfully  set");
     dispatch(getListEmploys());
   };
 };
